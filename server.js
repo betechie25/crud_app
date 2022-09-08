@@ -25,17 +25,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 //log requests
 app.use(morgan('tiny'));
 
-//set default route
-app.get('/',(req,res)=>{
-    res.render('index')
-});
-app.get('/add-user',(req,res)=>{
-    res.render('add_user')
-});
-app.get('/update-user',(req,res)=>{
-    res.render('update_user')
-});
+//load routes
+app.use('/', require('./server/routes/router'))
+
 // Listen server on port
-app.listen(5000,()=>{
+app.listen(3000,()=>{
     console.log(`Server Listening on port ${PORT}`);
 })
