@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const connectDB = require('./server/database/connection');
 
 
 dotenv.config({path:'config.env'})
@@ -24,6 +25,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //log requests
 app.use(morgan('tiny'));
+
+//mongoDB connection
+connectDB();
+
 
 //load routes
 app.use('/', require('./server/routes/router'))
